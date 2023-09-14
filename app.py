@@ -21,7 +21,7 @@ def clean_resume(resume_text):
     return clean_text
 # web app
 def main():
-    st.title("Resume Screening App")
+    st.title("NLP based Resume Ranking for Job Matching")
     uploaded_file = st.file_uploader('Upload Resume', type=['txt','pdf'])
 
     if uploaded_file is not None:
