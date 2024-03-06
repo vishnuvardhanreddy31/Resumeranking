@@ -188,7 +188,7 @@ def main():
                 st.markdown(f'<p style="font-size: 14px;">Location: {job["job_location"]}</p>', unsafe_allow_html=True)
                 st.markdown(f'<p style="font-size: 14px;">Posted Date: {job["posted_date"]}</p>', unsafe_allow_html=True)
                 if st.button("Apply Now", key=job["job_url"]):
-                    webbrowser.open(job["job_url"])
+                    st.markdown(f'<a href="javascript:window.open(\'{job["job_url"]}\', \'_blank\');" target="_self">Apply Now</a>', unsafe_allow_html=True)
 
                 st.markdown("---")
         else:
