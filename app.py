@@ -180,10 +180,12 @@ def main():
 
         if data:
             for job in data:
-                st.markdown(f'<p style="font-size: 16px;">{job["job_title"]}<a style="color: #0366d6; font-size: 18px;" href="{job["job_apply_link"]}">click here to apply</a></p>', unsafe_allow_html=True)
+                st.image(f'{job['employer_logo']}')
+                st.markdown(f'<p style="font-size: 16px;">{job["job_title"]}</p>', unsafe_allow_html=True)
                 st.markdown(f'<p style="font-size: 16px;">Company: {job["employer_name"]}</p>', unsafe_allow_html=True)
                 st.markdown(f'<p style="font-size: 14px;">Location: {job["job_city"]}, {job["job_state"]}, {job["job_country"]}</p>', unsafe_allow_html=True)
                 st.markdown(f'<p style="font-size: 14px;">Posted Date: {job["job_posted_at_datetime_utc"]}</p>', unsafe_allow_html=True)
+                st.markdown(f'<a style="color: #0366d6; font-size: 18px;" href="{job["job_apply_link"]}">click here to apply</a>',unsafe_allow_html=True)
                 st.markdown("---")
         else:
             st.warning(f"No jobs found for the predicted category '{category_name}' in India.")
