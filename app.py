@@ -164,32 +164,30 @@ def main():
         st.success(category_name)
 
         # LinkedIn Job Search API Integration
-        st.header("LinkedIn Job Openings for Predicted Category")
-        linkedin_payload = {
-            "search_terms": category_name,
-            "location": "India",  # Update with India as the desired location
-            "page": "1"
-        }
+        st.header("Job Openings for Predicted Category")
+        url = "https://jsearch.p.rapidapi.com/search"
 
-        linkedin_headers = {
-            "content-type": "application/json",
+        querystring = {"query": f"{category_name} in India", "page": "1", "num_pages": "1"}
+
+        headers = {
             "X-RapidAPI-Key": "d84fca7d4emshd10e32a65c27c6ep19764ejsn800030a17dc2",
-            "X-RapidAPI-Host": "linkedin-jobs-search.p.rapidapi.com"
+            "X-RapidAPI-Host": "jsearch.p.rapidapi.com"
         }
 
-        linkedin_response = requests.post("https://linkedin-jobs-search.p.rapidapi.com/", json=linkedin_payload, headers=linkedin_headers)
+        response = requests.get(url, headers=headers, params=querystring)
 
-        if linkedin_response.status_code == 200:
-            st.success("Jobs found successfully")
-            # Apply styles to each link, title, button, and card
-            for job in linkedin_response.json():
-                st.markdown(f'<p style="font-size: 16px;">{job["job_title"]}<a style="color: #0366d6; font-size: 18px;" href="{job["job_url"]}">click here to apply</a></p>', unsafe_allow_html=True)
-                st.markdown(f'<p style="font-size: 16px;">Company: <a style="color: #0366d6;" href="{job["company_url"]}">{job["company_name"]}</a></p>', unsafe_allow_html=True)
-                st.markdown(f'<p style="font-size: 14px;">Location: {job["job_location"]}</p>', unsafe_allow_html=True)
-                st.markdown(f'<p style="font-size: 14px;">Posted Date: {job["posted_date"]}</p>', unsafe_allow_html=True)
+        data = response.json().get("data", [])
+
+        if data:
+            for job in data:
+                st.markdown(f'<p style="font-size: 16px;">{job["job_title"]}<a style="color: #0366d6; font-size: 18px;" href="{job["job_apply_link"]}">click here to apply</a></p>', unsafe_allow_html=True)
+                st.markdown(f'<p style="font-size: 16px;">Company: {job["employer_name"]}</p>', unsafe_allow_html=True)
+                st.markdown(f'<p style="font-size: 14px;">Location: {job["job_city"]}, {job["job_state"]}, {job["job_country"]}</p>', unsafe_allow_html=True)
+                st.markdown(f'<p style="font-size: 14px;">Posted Date: {job["job_posted_at_datetime_utc"]}</p>', unsafe_allow_html=True)
                 st.markdown("---")
         else:
-            st.warning("No LinkedIn jobs found for the predicted category in India.")
+            st.warning(f"No jobs found for the predicted category '{category_name}' in India.")
+
 
 # Python main
 if __name__ == "__main__":
