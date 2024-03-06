@@ -87,6 +87,7 @@ import pickle
 import re
 import nltk
 import requests
+import webbrowser
 
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -186,7 +187,9 @@ def main():
                 st.markdown(f'<p style="font-size: 16px;">Company: <a style="color: #0366d6;" href="{job["company_url"]}">{job["company_name"]}</a></p>', unsafe_allow_html=True)
                 st.markdown(f'<p style="font-size: 14px;">Location: {job["job_location"]}</p>', unsafe_allow_html=True)
                 st.markdown(f'<p style="font-size: 14px;">Posted Date: {job["posted_date"]}</p>', unsafe_allow_html=True)
-                st.button("Apply Now", key=job["job_url"])
+                if st.button("Apply Now", key=job["job_url"]):
+                    webbrowser.open(job["job_url"])
+
                 st.markdown("---")
         else:
             st.warning("No LinkedIn jobs found for the predicted category in India.")
