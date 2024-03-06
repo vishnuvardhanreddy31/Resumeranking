@@ -179,7 +179,7 @@ def main():
         linkedin_response = requests.post("https://linkedin-jobs-search.p.rapidapi.com/", json=linkedin_payload, headers=linkedin_headers)
 
         if linkedin_response.status_code == 200:
-            st.success(linkedin_response.json())
+            st.success("Jobs found successfully")
             # Apply styles to each link, title, button, and card
             for job in linkedin_response.json():
                 st.markdown(f'<a style="color: #0366d6; font-size: 18px;" href="{job["job_url"]}">{job["job_title"]}</a>', unsafe_allow_html=True)
