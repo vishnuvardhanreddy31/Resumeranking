@@ -180,7 +180,8 @@ def main():
 
         if data:
             for job in data:
-                st.image(job['employer_logo'])
+                if job['employer_logo']:
+                    st.image(job['employer_logo'])
                 st.markdown(f'<p style="font-size: 16px;">{job["job_title"]}</p>', unsafe_allow_html=True)
                 st.markdown(f'<p style="font-size: 16px;">Company: {job["employer_name"]}</p>', unsafe_allow_html=True)
                 st.markdown(f'<p style="font-size: 14px;">Location: {job["job_city"]}, {job["job_state"]}, {job["job_country"]}</p>', unsafe_allow_html=True)
