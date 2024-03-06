@@ -183,7 +183,7 @@ def main():
             st.success("Jobs found successfully")
             # Apply styles to each link, title, button, and card
             for job in linkedin_response.json():
-                st.markdown(f'<h1><a style="color: #0366d6; font-size: 18px;" href="{job["job_url"]}" target="_blank">{job["job_title"]}</a> <button><a href="{job["apply_url"]}" target="_blank">Apply Here</a></button></h1>', unsafe_allow_html=True)                
+                st.markdown(f'<p style="font-size: 16px;">{job["job_title"]}<a style="color: #0366d6; font-size: 18px;" href="{job["job_url"]}">click here to apply</a></p>', unsafe_allow_html=True)
                 st.markdown(f'<p style="font-size: 16px;">Company: <a style="color: #0366d6;" href="{job["company_url"]}">{job["company_name"]}</a></p>', unsafe_allow_html=True)
                 st.markdown(f'<p style="font-size: 14px;">Location: {job["job_location"]}</p>', unsafe_allow_html=True)
                 st.markdown(f'<p style="font-size: 14px;">Posted Date: {job["posted_date"]}</p>', unsafe_allow_html=True)
