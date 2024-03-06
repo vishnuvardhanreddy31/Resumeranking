@@ -183,12 +183,10 @@ def main():
             st.success("Jobs found successfully")
             # Apply styles to each link, title, button, and card
             for job in linkedin_response.json():
-                st.markdown(f'<a style="color: #0366d6; font-size: 18px;" href="{job["job_url"]}">{job["job_title"]}</a>', unsafe_allow_html=True)
+                st.markdown(f'<a style="color: #0366d6; font-size: 18px;" href="{job["job_url"]}">{job["job_title"]} 👈click here to apply</a>', unsafe_allow_html=True)
                 st.markdown(f'<p style="font-size: 16px;">Company: <a style="color: #0366d6;" href="{job["company_url"]}">{job["company_name"]}</a></p>', unsafe_allow_html=True)
                 st.markdown(f'<p style="font-size: 14px;">Location: {job["job_location"]}</p>', unsafe_allow_html=True)
                 st.markdown(f'<p style="font-size: 14px;">Posted Date: {job["posted_date"]}</p>', unsafe_allow_html=True)
-                if st.button("Apply Now", key=job["job_url"]):
-                    st.write(f'<script>window.location.href="{job["job_url"]}";</script>', unsafe_allow_html=True)
                 st.markdown("---")
         else:
             st.warning("No LinkedIn jobs found for the predicted category in India.")
