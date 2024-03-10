@@ -2,4 +2,3 @@ streamlit
 nltk
 scikit-learn
 requests
-webbrowser

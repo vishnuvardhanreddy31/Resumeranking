@@ -192,6 +192,5 @@ def main():
             st.warning(f"No jobs found for the predicted category '{category_name}' in India.")
 
 
-# Python main
 if __name__ == "__main__":
     main()
