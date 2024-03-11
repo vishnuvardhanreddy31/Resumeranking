@@ -1,0 +1,4 @@
+what is cross validation means
+hyper parameters tuing
+selecting number of neighbours
+text-preprocessing
